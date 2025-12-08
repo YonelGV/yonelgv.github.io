@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>Reproductor de Musica</title>
+		<link href="https://fonts.googleapis.com/css?family=Darker+Grotesque|Poiret+One&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link crossorigin="anonymous" media="all" rel="stylesheet" href="styles.css" />
+		<link rel="shortcut icon" href="pacha.png" type="image/x-icon">
+	</head>
+	<body>
+		<div class="audio-player" id="skin">
+			<div class="holder">
+				<div class="cover">
+					
+					<img src="pacha.png">
+				</div>
+				<div class="audio-wrapper" id="player-container" href="javascript:;">
+					<audio id="player" preload="metadata">
+						<source src="" type="audio/mp3">
+					</audio>
+				</div>
+				<div class="player-controls scrubber">
+					<div>
+						<div>
+							<p class="title"></p>
+						</div>
+						<div class="range">
+							<input id="dur" type="range" class="range" name="rng" min="0" max="1" step="0.00000001" value="0" onchange="mSet()" style="width: 100%">
+						</div>
+						<br>
+						<span class="time start-time"></span>
+						<span class="time end-time"></span>
+						<br>
+						<div class="ctrl">
+							<div>
+								<a href="#prev" class="ctrl_btn " id="prev"><i class="fa fa-arrow-left" ></i></a>
+								<span id="play-btn" class="fa fa-play "></span>
+								<a href="#next" class="ctrl_btn " id="next"><i class="fa fa-arrow-right" ></i></a>
+							</div>
+							<div class="volumeControl">
+								<div class="wrapper">
+									<i class="fa fa-volume-up"></i>
+									<span class="outer">
+										<span class="inner"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+					</div>
+				</div>
+			</div>
+		
+			
+		</div>
+		<script crossorigin="anonymous" defer="defer" type="application/javascript" src="jquery.min.js"></script>
+		<script crossorigin="anonymous" defer="defer" type="application/javascript" src="script.js"></script>
+
+		<div class="footer">
+		    
+		  </div>
+	</body>
+</html>

@@ -1,0 +1,271 @@
+/* --- Importar fuente --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* --- Variables CSS (Theming) --- */
+:root {
+  /* Fuente */
+  --font-main: 'Poppins', sans-serif;
+
+  /* Colores */
+  --bg-color: #121212;
+  --player-bg: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-color: #1DB954;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --icon-color: #b3b3b3;
+  --icon-hover: #ffffff;
+}
+
+body.theme-light {
+  --bg-color: #f5f5f5;
+  --player-bg: #ffffff;
+  --text-primary: #212121;
+  --text-secondary: #5f5f5f;
+  --accent-color: #007bff;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --icon-color: #5f5f5f;
+  --icon-hover: #212121;
+}
+
+body.theme-blue {
+  --bg-color: #0d1b2a;
+  --player-bg: #1b263b;
+  --text-primary: #e0e1dd;
+  --text-secondary: #778da9;
+  --accent-color: #415a77;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --icon-color: #778da9;
+  --icon-hover: #e0e1dd;
+}
+
+/* --- Reset básico y estilos generales --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+/* --- Reproductor principal --- */
+.audio-player {
+  background-color: var(--player-bg);
+  width: 100%;
+  max-width: 380px;
+  border-radius: 15px;
+  padding: clamp(15px, 5vw, 25px);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 4vw, 20px);
+  transition: background-color 0.3s ease;
+}
+
+/* --- Portada de la canción --- */
+.cover-art img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  display: block;
+}
+
+/* --- Información de la pista --- */
+.track-info .title {
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+/* --- Barra de progreso y tiempo --- */
+.progress-controls {
+  width: 100%;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+  color: var(--text-secondary);
+  margin-top: 5px;
+  transition: color 0.3s ease;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Thumb para WebKit (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  border: 2px solid var(--player-bg);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Thumb para Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  border: 2px solid var(--player-bg);
+}
+
+/* Thumb para IE/Edge */
+input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  border: 2px solid var(--player-bg);
+}
+
+/* Track para Firefox */
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 5px;
+}
+
+/* Track para IE/Edge */
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* --- Controles principales --- */
+.main-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 8vw, 35px);
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: var(--icon-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.control-btn:hover {
+  color: var(--icon-hover);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-btn.play {
+  font-size: 3rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--player-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+}
+
+.control-btn.play:hover {
+  filter: brightness(1.1);
+}
+
+/* --- Controles secundarios --- */
+.secondary-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  gap: 10px;
+  color: var(--icon-color);
+}
+
+.volume-control input[type="range"] {
+  height: 4px;
+}
+
+.theme-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  background: none;
+  border: 1px solid var(--icon-color);
+  color: var(--icon-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.theme-btn:hover {
+  background-color: var(--icon-color);
+  color: var(--player-bg);
+}
+
+/* --- Media query para pantallas pequeñas --- */
+@media (max-width: 360px) {
+  .secondary-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .volume-control {
+    width: 100%;
+  }
+
+  .control-btn.play {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+}

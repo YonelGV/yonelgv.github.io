@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Reproductor de Himnos</title>
+  
+  <!-- Iconos de Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css"> 
+  
+  <link rel="shortcut icon" href="taqa.png" type="image/x-icon">
+</head>
+<body class="theme-dark"> <!-- Tema por defecto -->
+
+  <div class="audio-player" id="player-container">
+    <audio id="player" preload="metadata"></audio>
+
+    <div class="cover-art">
+      <img src="taqa.png" alt="Logo del Himnario">
+    </div>
+
+    <div class="track-info">
+      <p class="title">Cargando himno...</p>
+    </div>
+
+    <div class="progress-controls">
+      <div class="progress-bar-wrapper">
+        <input id="progress-bar" type="range" min="0" value="0" step="1">
+      </div>
+      <div class="time-display">
+        <span class="start-time">0:00</span>
+        <span class="end-time">0:00</span>
+      </div>
+    </div>
+
+    <div class="main-controls">
+      <button id="prev-btn" class="control-btn"><i class="fa fa-backward-step"></i></button>
+      <button id="play-btn" class="control-btn play"><i class="fa fa-play"></i></button>
+      <button id="next-btn" class="control-btn"><i class="fa fa-forward-step"></i></button>
+    </div>
+    
+    <div class="secondary-controls">
+       <div class="volume-control">
+            <i class="fa fa-volume-low"></i>
+            <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="1">
+            <i class="fa fa-volume-high"></i>
+        </div>
+        <div class="theme-switcher">
+            <button class="theme-btn" data-theme="dark" title="Tema Oscuro"><i class="fa fa-moon"></i></button>
+            <button class="theme-btn" data-theme="light" title="Tema Claro"><i class="fa fa-sun"></i></button>
+            <button class="theme-btn" data-theme="blue" title="Tema Azul"><i class="fa fa-droplet"></i></button>
+        </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=1.1"></script>
+</body>
+</html>
