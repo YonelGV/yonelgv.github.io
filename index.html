@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>Himnario IEP</title>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .audio-controls {
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        #audio-player {
+            width: 100%;
+            height: 40px;
+        }
+        #pdf-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 40px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="audio-controls">
+        <audio id="audio-player" controls>
+            <source id="audio-source" type="audio/mpeg">
+            Tu navegador no soporta el elemento audio.
+        </audio>
+    </div>
+    
+    <iframe id="pdf-container" src="" allow="fullscreen; autoplay"></iframe>
+
+    <script>
+        // Función para manejar el parámetro 'num' en la URL
+        function getNumFromUrl() {
+            // Obtener la URL actual sin el slash final si existe
+            const url = window.location.href.replace(/\/$/, "");
+
+            // Extraer los parámetros de la URL
+            const urlParams = new URLSearchParams(url.split("?")[1]);
+            const num = urlParams.get("num");
+
+            return num;
+        }
+
+        // Cargar contenido dinámico
+        function loadContent() {
+            const num = getNumFromUrl();
+            const pdfContainer = document.getElementById("pdf-container");
+            const audioSource = document.getElementById("audio-source");
+            const audioPlayer = document.getElementById("audio-player");
+
+            if (num >= 1 && num <= 400) {
+                const pdfUrl = `https://docs.google.com/viewer?url=https://github.com/YonelGV/hymiep/raw/main/HymNotasPDF/${num}.pdf&embedded=true&cachebuster=${new Date().getTime()}`;
+                const audioUrl = `https://github.com/YonelGV/hymiep/raw/main/HymMP3/${num}.mp3?cachebuster=${new Date().getTime()}`;
+                
+                pdfContainer.src = pdfUrl; // Cargar PDF
+                audioSource.src = audioUrl; // Cargar audio
+                audioPlayer.load();
+
+                audioPlayer.oncanplay = function() {
+                    console.log("Audio cargado correctamente");
+                };
+            } else {
+                alert("Número inválido. Intenta con un número entre 1 y 400.");
+            }
+        }
+
+        // Pausar el audio cuando la pestaña no está visible
+        function handleVisibilityChange() {
+            const audioPlayer = document.getElementById("audio-player");
+            if (document.hidden) {
+                audioPlayer.pause();
+            }
+        }
+
+        // Listeners
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+        document.addEventListener("DOMContentLoaded", loadContent);
+    </script>
+</body>
+</html>
